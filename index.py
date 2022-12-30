@@ -17,3 +17,7 @@ while True:
         DATA[args[0]] = args[1]
     elif cmd.upper() == 'GET':
         print(DATA[args[0]])
+     
+   if cmd.upper() == 'DEL':
+        DATA[args[0]] = None
+        
