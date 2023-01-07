@@ -17,11 +17,13 @@ while True:
     try:
         cmd, *args = shlex.split(input('# '))
         if cmd == 'set':
+            if args[0] not in DATA and len(args) < 3:
+                print("Please enter the type of value!")
+                break
             if args[0] not in DATA:
                 checking_input(args[2])
                 args[1] = args[2]
                 del args[2]
-
             checking_input(args[1])
 
     except ValueError:
