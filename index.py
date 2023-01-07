@@ -4,26 +4,36 @@ import shlex
 DATA = {}
 
 
-def checking(x):
+def checking_input(x):
     if type(int(x)) is not int:
-        raise TypeError('Work with Numbers Only!')
+        raise TypeError('Work with Numbers Only')
 
-        
+
+def cntr_arg():
+    ...
+
+
 while True:
     try:
         cmd, *args = shlex.split(input('# '))
         if cmd == 'set':
-            checking(args[1])
-    except ValueError as e:
+            if args[0] not in DATA:
+                checking_input(args[2])
+                args[1] = args[2]
+                del args[2]
+
+            checking_input(args[1])
+
+    except ValueError:
         print("Oops!  That was no valid number.  Try again...")
+
     except KeyboardInterrupt as e:
         print('Bye!')
         break
-    
+
     if cmd.upper() == 'SET':
         DATA[args[0]] = args[1]
     elif cmd.upper() == 'GET':
         print(DATA[args[0]])
-   if cmd.upper() == 'DEL':
+    elif cmd.upper() == 'DEL':
         DATA[args[0]] = None
-        
