@@ -9,23 +9,26 @@ def checking_input(x):
     if len(args) > 2:
         if args[1] == 'int':
             if type(int(args[2])) != type(num_test):
-                print("Please enter the correct form of value!")
+                print("Error")
             else:
                 args[1] = args[2]
                 del args[2]
         elif args[1] == 'str':
-            print('Work with Numbers Only')
+            print('Error')
+        elif args[1] != 'int' or 'str':
+            print('Error')
     else:
         if type(int(1)) is not int:
-            raise TypeError('Work with Numbers Only')
-            
+            raise TypeError('Error')
+
+
 while True:
     try:
         cmd, *args = shlex.split(input('# '))
         if cmd == 'set':
             if args[0] not in DATA and len(args) < 3:
-                print("Please enter the correct form of value!")
-                break
+                print("Error")
+
             if args[0] not in DATA:
                 checking_input(args)
             else:
